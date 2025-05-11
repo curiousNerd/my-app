@@ -1,0 +1,17 @@
+# .gitignore
+# Java
+/target
+*.class
+
+# Node
+/node_modules
+/dist
+
+# Python
+__pycache__/
+*.pyc
+.env
+
+# IDEs
+.idea/
+.vscode/
