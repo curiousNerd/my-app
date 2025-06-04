@@ -1,17 +1,19 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 function App() {
+  const [message, setMessage] = useState('Loading...');
+
+  useEffect(() => {
+    fetch('http://localhost:8080/api/hello')
+      .then((res) => res.text())
+      .then((data) => setMessage(data))
+      .catch((err) => setMessage('Error: ' + err.message));
+  }, []);
+
   return (
-    <Router>
-      <nav>
-        <Link to="/">Home</Link> | <Link to="/about">About</Link> | <Link to="/projects">Projects</Link>
-      </nav>
-      <Routes>
-        <Route path="/" element={<h2>Home Page</h2>} />
-        <Route path="/about" element={<h2>About Me</h2>} />
-        <Route path="/projects" element={<h2>Projects</h2>} />
-      </Routes>
-    </Router>
+    <div style={{ textAlign: 'center', marginTop: '5rem' }}>
+      <h1>{message}</h1>
+    </div>
   );
 }
 
